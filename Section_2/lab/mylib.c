@@ -16,5 +16,6 @@
 
 void sleep(int s)
 {
-    printf("Hey fool! I am not sleeping!\n");
+    /* Here you can do some serious damage! */
+    printf("Hey fool! I am mucking you over!!\n");
 }
