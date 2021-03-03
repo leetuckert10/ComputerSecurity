@@ -13,7 +13,7 @@
 
 int main(int argc, char **argv)
 {
-    char *v[2];     // array of pointers
+    char *v[3];     // array of pointers
     
     v[0] = "/bin/cat";
     v[1] = "/etc/shadow";
