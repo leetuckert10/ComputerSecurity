@@ -1,0 +1,16 @@
+# This turns of countermeasure: memory randomization.
+$ sudo sysctl -w kernel.randomize_va_space=0
+$ kernel.randomize_va_space = 0
+
+# Compilation
+$ gcc -z execstack -fno-stack-protector -o stack stack.c
+$ sudo chown root stack
+$ sudo chmod 4755 stack
+$ ls -al        # just checking it...
+
+# Execution
+$ head -c 100 /dev/urandom > badfile
+$ ./stack       # returns properly
+$ head -c 160 /dev/urandom > badfile
+$ ./stack       # puke; green chunks, smelly
+$ Segmentation fault
