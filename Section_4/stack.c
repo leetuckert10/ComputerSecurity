@@ -13,6 +13,12 @@ $ kernel.randomize_va_space = 0
 
 # Compilation
 $ gcc -z execstack -fno-stack-protector -o stack stack.c
+  Note: -z execstack overrides a countermeasure in that the stack is
+        not executable. This is done by the compiler. Here, we instruct
+        the compiler to not do that.
+        -fno-stack-protector overrides yet another countermeasure where
+        the compiler adds special data an checking mechanisims to detect
+        buffer overflow.
 $ sudo chown root stack
 $ sudo chmod 4755 stack
 $ ls -al        # just checking it...
@@ -55,11 +61,11 @@ int foo(char *str)
 
 int main(int argc, char **argv)
 {
-    char str[400];
+    char str[520];
     FILE *badfile;
 
-    badfile = fopen("badfile", "r");
-    fread(str, sizeof(char), 300, badfile);
+    badfile = fopen("../badfile", "r");
+    fread(str, sizeof(char), 517, badfile);
     foo(str);
 
     printf("foo() return properly...\n");
