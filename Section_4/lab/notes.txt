@@ -1,0 +1,10 @@
+Turning Off Countermeasures
+1.  sudo sysctl -w kernel.randomize_va_space=0
+2.  gcc -fno-stack-protector -o foo foo.c
+3.  gcc -z [no]execstack -o foo foo.c
+4.  sudo -i; cd /bin; ln -sf zsh sh
+
+Assembly Code Compilation
+1.  gcc -S -o shellCode shellCode.c
+2.  gcc -m32 -masm=intel -c shellCode.s -o shellCode.o
+3.  gcc -m32 shellCode.o -o shellCode
