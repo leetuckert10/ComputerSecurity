@@ -11,6 +11,7 @@ void foo(char *arg)
     buffer = (char *) calloc(strlen(arg) + 1, sizeof(char));
     strcpy(buffer, arg);
     printf("String '%s' is %d bytes long\n", buffer, strlen(buffer));
+    free(buffer);
 }
 
 void fubar(char *arg)

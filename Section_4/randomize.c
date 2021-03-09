@@ -8,5 +8,7 @@ void main()
 
     printf("Address of stack buffer 'x': %p\n", x);
     printf(" Address of heap buffer 'y': %p\n", y);
+
+    free(y);
 }
 

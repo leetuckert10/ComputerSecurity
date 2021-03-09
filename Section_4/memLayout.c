@@ -42,6 +42,7 @@ void copyFunc()
     strcpy(dest, src);
     printf("Note that strcpy() will stop when it finds the null byte.\n");
     printf("%s\n", dest);
+    free(dest);
 }
 
 int main(int argc, char **argv)
