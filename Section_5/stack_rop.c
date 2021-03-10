@@ -25,11 +25,33 @@
 int bof(char *str)
 {
     char buffer[BUF_SIZE];
+    unsigned int *framep;
+    char *shell = (char *) getenv("MYSHELL");
 
-    /* The following statement has a buffer overflow problem */
+    asm("movl %%ebp, %0" : "=r" (framep));
+
+    // Print out information we need.
+    printf("Address of buffer[]: 0x%.8x\n", (unsigned) buffer);
+    printf("Frame Pointer value: 0x%.8x\n", (unsigned) framep);
+
+    if (shell) {
+        printf("The '%s' string address is %p.\n", shell, shell);
+    }
+
+    printf("The offset between ebp start and buffer start is: %d\n",
+            (unsigned) framep - (unsigned) buffer);
+
+    // The following statement has a buffer overflow problem.
     strcpy(buffer, str);       
 
     return 1;
+}
+
+/* For the purpose of experimentation. */
+void bar()
+{
+    static int i = 0;
+    printf("Fucntion bar() is invoked %d times!\n", ++i);
 }
 
 int main(int argc, char **argv)

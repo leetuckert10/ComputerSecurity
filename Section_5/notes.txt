@@ -56,3 +56,17 @@ Return to libc Attack
     4.  p exit
 7.  Put these addresses in either exploit.c or exploit.py and the attack
     will work!
+
+Return Oriented Programming ROP
+1.  This means that when we return from a function, we actually return
+    to a totally different function. We do return to the place from 
+    whence we came.
+2.  Check out the code in stack_rof.c.
+3.  When testing this:
+    - ln -s bash sh2
+    - gcc -DBUF_SIZE=100 -z noexecstack -fno-stack-protector -o stack_rop
+      ../stack_rop.c
+    - chown root stack_rop; sudo chmod 4755 stack_rop; ls -al
+    - >badfile
+
+
