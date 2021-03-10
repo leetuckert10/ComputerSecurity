@@ -8,3 +8,17 @@ Assembly Code Compilation
 1.  gcc -S -o shellCode shellCode.c
 2.  gcc -m32 -masm=intel -c shellCode.s -o shellCode.o
 3.  gcc -m32 shellCode.o -o shellCode
+
+Turning off StackGuard protection
+1.  gcc -DBUF_SIZE=64 -o stack -z execstack ../stack.c
+2.  sudo chown root stack; sudo chmod 4755 stack; ls -al
+3.  ./stack
+    *** stack smashing detected ***: ./stack terminated
+    Aborted
+
+Turning on non-executable stack protection.
+1.  gcc -DBUF_SIZE=64 -o stack -z noexecstack -fno-stack-protector ../stack.c
+2.  sudo chown root stack; sudo chmod 4755 stack; ls -al
+3.  ./stack
+    Segmentation fault
+
