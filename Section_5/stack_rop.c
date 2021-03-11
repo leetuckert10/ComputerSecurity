@@ -54,6 +54,11 @@ void bar()
     printf("Fucntion bar() is invoked %d times!\n", ++i);
 }
 
+void baz(int x)
+{
+    printf("The value of baz()'s argument: 0x%.8x\n", x);
+}
+
 int main(int argc, char **argv)
 {
     char str[518];
