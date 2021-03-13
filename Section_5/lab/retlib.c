@@ -56,7 +56,11 @@ int bof(FILE *badfile)
     printf("The offset between ebp start and buffer start is: %d\n",
             (unsigned) framep - (unsigned) buffer);
 
-    /* The following statement has a buffer overflow problem */
+    /* Using fread() to read the data from the file directly into the
+       buffer circumvents the problem of have a '\0' byte in the string
+       which is the case in using strcpy(). strcpy will stop copying
+       when it runs across a null byte thinking it is the end of the
+       string. */
     fread(buffer, sizeof(char), 300, badfile);
 
     return 1;
